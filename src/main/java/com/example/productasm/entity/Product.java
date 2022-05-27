@@ -105,6 +105,7 @@ public class Product extends BaseEntity {
         this.thumbnail = thumbnail;
         this.manufactureEmail = manufactureEmail;
         this.manufacturePhone = manufacturePhone;
+        errors = new HashMap<>();
     }
 
     public Product(int id, String name, String description, String detail, double price, String thumbnail, String manufactureEmail, String manufacturePhone) {
@@ -116,6 +117,7 @@ public class Product extends BaseEntity {
         this.thumbnail = thumbnail;
         this.manufactureEmail = manufactureEmail;
         this.manufacturePhone = manufacturePhone;
+        errors = new HashMap<>();
     }
 
     public Product(String name, String description, String detail, double price, String thumbnail, String manufactureEmail, String manufacturePhone) {
@@ -126,6 +128,7 @@ public class Product extends BaseEntity {
         this.thumbnail = thumbnail;
         this.manufactureEmail = manufactureEmail;
         this.manufacturePhone = manufacturePhone;
+        errors = new HashMap<>();
     }
     public HashMap<String, String> getErrors() {
         return errors;

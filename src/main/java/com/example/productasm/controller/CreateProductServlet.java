@@ -2,7 +2,6 @@ package com.example.productasm.controller;
 
 import com.example.productasm.entity.Product;
 import com.example.productasm.model.MySQLProductModel;
-import com.example.productasm.model.ProductModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +40,7 @@ public class CreateProductServlet extends HttpServlet {
         }else {
             req.setAttribute("errors", product.getErrors());
             req.setAttribute("product", product);
-            req.getRequestDispatcher("/product/create.jsp").forward(req,resp);
+            req.getRequestDispatcher("/products/create.jsp").forward(req,resp);
         }
     }
 }

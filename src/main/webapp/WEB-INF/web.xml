@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
+<!--product-->
    <servlet>
        <servlet-name>ListProductServlet</servlet-name>
        <servlet-class>com.example.productasm.controller.ListProductServlet</servlet-class>
    </servlet>
     <servlet-mapping>
         <servlet-name>ListProductServlet</servlet-name>
-        <url-pattern>/list</url-pattern>
+        <url-pattern>/product/list</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -19,7 +19,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateProductServlet</servlet-name>
-        <url-pattern>/create</url-pattern>
+        <url-pattern>/product/create</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateProductServlet</servlet-name>
-        <url-pattern>/update</url-pattern>
+        <url-pattern>/product/update</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -37,7 +37,87 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteProductServlet</servlet-name>
-        <url-pattern>/delete</url-pattern>
+        <url-pattern>/product/delete</url-pattern>
     </servlet-mapping>
+<!--end product-->
+
+<!--category-->
+
+    <servlet>
+        <servlet-name>CreateCategoryServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.product.CreateCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCategoryServlet</servlet-name>
+        <url-pattern>/category/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListCategoryServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.product.ListCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCategoryServlet</servlet-name>
+        <url-pattern>/category/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.product.UpdateCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCategoryServlet</servlet-name>
+        <url-pattern>/category/update</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCategory</servlet-name>
+        <servlet-class>com.example.productasm.controller.product.DeleteCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCategory</servlet-name>
+        <url-pattern>/category/delete</url-pattern>
+    </servlet-mapping>
+<!--    end category-->
+
+<!--    shopping cart-->
+    <servlet>
+        <servlet-name>AddCartServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.shoppingcart.AddCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCartServlet</servlet-name>
+        <url-pattern>/shopping/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetCartServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.shoppingcart.GetCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCartServlet</servlet-name>
+        <url-pattern>/shopping/get</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveCartServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.shoppingcart.RemoveCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveCartServlet</servlet-name>
+        <url-pattern>/shopping/remove</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SubCartServlet</servlet-name>
+        <servlet-class>com.example.productasm.controller.shoppingcart.SubCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubCartServlet</servlet-name>
+        <url-pattern>/shopping/sub</url-pattern>
+    </servlet-mapping>
+
+
+<!--    end shopping cart-->
+
 
 </web-app>

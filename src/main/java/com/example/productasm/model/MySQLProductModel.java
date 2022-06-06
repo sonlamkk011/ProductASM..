@@ -3,7 +3,7 @@ package com.example.productasm.model;
 import com.example.productasm.contans.SQLcontants;
 import com.example.productasm.entity.Product;
 import com.example.productasm.entity.entityEnum.ProductStatus;
-import com.example.productasm.util.ConnectionHepler;
+import com.example.productasm.util.ConnectionHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,31 +19,33 @@ public class MySQLProductModel implements ProductModel {
     }
 
     @Override
-    public boolean save (Product product) {
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean save(Product product) {
         try {
-            Connection connection = ConnectionHepler.getConnection();
+            Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLcontants.PRODUCT_INSERT);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setString(3, product.getDetail());
             preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.setString(5, product.getThumbnail());
-            preparedStatement.setString(6, product.getManufactureEmail());
-            preparedStatement.setString(7, product.getManufacturePhone());
-            preparedStatement.setString(8, product.getCreatedAt().toString());
-            preparedStatement.setString(9, product.getUpdatedAt().toString());
+            preparedStatement.setString(6, product.getCreatedAt().toString());
+            preparedStatement.setString(7, product.getUpdatedAt().toString());
             if (product.getDeletedAt() != null) {
-                preparedStatement.setString(10, product.getDeletedAt().toString());
+                preparedStatement.setString(8, product.getDeletedAt().toString());
             } else {
-                preparedStatement.setString(10, null);
+                preparedStatement.setString(8, null);
             }
-            preparedStatement.setInt(11, product.getCreatedBy());
-            preparedStatement.setInt(12, product.getUpdatedBy());
-            preparedStatement.setInt(13, product.getDeletedBy());
-            preparedStatement.setInt(14, product.getProductStatus().getValue());
+            preparedStatement.setInt(9, product.getCreatedBy());
+            preparedStatement.setInt(10, product.getUpdatedBy());
+            preparedStatement.setInt(11, product.getDeletedBy());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         return false;
     }
@@ -51,27 +53,25 @@ public class MySQLProductModel implements ProductModel {
     @Override
     public boolean update(int id, Product product) {
         try {
-            Connection connection = ConnectionHepler.getConnection();
+            Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLcontants.PRODUCT_UPDATE);
-            preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getDescription());
-            preparedStatement.setString(3, product.getDetail());
-            preparedStatement.setDouble(4, product.getPrice());
-            preparedStatement.setString(5, product.getThumbnail());
-            preparedStatement.setString(6, product.getManufactureEmail());
-            preparedStatement.setString(7, product.getManufacturePhone());
-            preparedStatement.setString(8, product.getCreatedAt().toString());
-            preparedStatement.setString(9, product.getUpdatedAt().toString());
+            preparedStatement.setInt(1 , product.getId());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setString(3, product.getDescription());
+            preparedStatement.setString(4, product.getDetail());
+            preparedStatement.setDouble(5, product.getPrice());
+            preparedStatement.setString(6, product.getThumbnail());
+            preparedStatement.setString(7, product.getCreatedAt().toString());
+            preparedStatement.setString(8, product.getUpdatedAt().toString());
             if (product.getDeletedAt() != null) {
-                preparedStatement.setString(10, product.getDeletedAt().toString());
+                preparedStatement.setString(9, product.getDeletedAt().toString());
             } else {
-                preparedStatement.setString(10, null);
+                preparedStatement.setString(9, null);
             }
-            preparedStatement.setInt(11, product.getCreatedBy());
-            preparedStatement.setInt(12, product.getUpdatedBy());
-            preparedStatement.setInt(13, product.getDeletedBy());
-            preparedStatement.setInt(14, product.getProductStatus().getValue());
-            preparedStatement.setInt(15, id);
+            preparedStatement.setInt(10, product.getCreatedBy());
+            preparedStatement.setInt(11, product.getUpdatedBy());
+            preparedStatement.setInt(12, product.getDeletedBy());
+            preparedStatement.setInt(13, product.getProductStatus().getValue());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println(e);
@@ -79,10 +79,11 @@ public class MySQLProductModel implements ProductModel {
         return false;
     }
 
+
     @Override
     public boolean delete(int id) {
         try {
-            Connection connection = ConnectionHepler.getConnection();
+            Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLcontants.PRODUCT_DELETE);
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate() > 0;
@@ -95,7 +96,7 @@ public class MySQLProductModel implements ProductModel {
     @Override
     public Product findById(int id) {
         try {
-            Connection connection = ConnectionHepler.getConnection();
+            Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLcontants.PRODUCT_FIND_BY_ID);
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, ProductStatus.ACTIVE.getValue());

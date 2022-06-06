@@ -9,5 +9,11 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+<button>
+    <a href="/category/create">
+        create
+    </a>
+</button>
+
 </body>
 </html>

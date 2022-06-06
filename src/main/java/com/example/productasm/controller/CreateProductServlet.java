@@ -30,18 +30,12 @@ public class CreateProductServlet extends HttpServlet {
         if(req.getParameter("price") != null && req.getParameter("price") != "") {
             price = Double.parseDouble(req.getParameter("price"));
         }
+        int categoryId = Integer.parseInt(req.getParameter("categoryId"));
         String thumbnail = req.getParameter("thumbnail");
-        String manufactureEmail = req.getParameter("manufactureEmail");
-        String manufacturePhone = req.getParameter("manufacturePhone");
-        Product product = new Product(name, description,detail, price,  thumbnail, manufactureEmail, manufacturePhone);
-        if(product.isValid()) {
+        Product product = new Product( categoryId, name, description, detail, thumbnail, price );
             mySQLProductModel.save(product);
             resp.sendRedirect("/list");
-        }else {
-            req.setAttribute("errors", product.getErrors());
-            req.setAttribute("product", product);
-            req.getRequestDispatcher("/products/create.jsp").forward(req,resp);
         }
-    }
+
 }
 

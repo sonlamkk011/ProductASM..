@@ -12,13 +12,15 @@ class MySQLProductModelTest {
     @BeforeEach
     void setUp() {
         productModel = new MySQLProductModel();
-        Product product = new Product("Product 12", "Demo12", "Detail", 100000, "src/images/product1.png", "demo@gmail.com", "033456789" );
+        Product product = new Product(1, 1, "diep", "122", "src/images/product1.png", "demo@gmail.com", 111 );
         productModel.save(product);
     }
 
     @Test
     void save() {
-        Product product = new Product("Product 1", "Demo description", "Detail", 100000, "src/images/diep.png", "demo@gmail.com", "033456789" );
+        Product product = new Product(1, 1, "diep1", "122", "src/images/product1.png", "demo@gmail.com", 111 );
         assertEquals(true, productModel.save(product));
     }
+
+
 }

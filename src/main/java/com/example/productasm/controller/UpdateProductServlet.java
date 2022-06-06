@@ -1,6 +1,7 @@
 package com.example.productasm.controller;
 
 import com.example.productasm.entity.Product;
+import com.example.productasm.entity.entityEnum.ProductStatus;
 import com.example.productasm.model.MySQLProductModel;
 import com.example.productasm.model.ProductModel;
 
@@ -21,9 +22,6 @@ public class UpdateProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Product product = productModel.findById(Integer.parseInt(req.getParameter("id")));
-        if(product == null) {
-            product = new Product();
-        }
         req.setAttribute("product", product);
         req.getRequestDispatcher("/products/update.jsp").forward(req, resp);
     }
@@ -38,11 +36,10 @@ public class UpdateProductServlet extends HttpServlet {
         if(req.getParameter("price") != "" && req.getParameter("price") != null) {
             price = Double.parseDouble(req.getParameter("price"));
         }
-        String manufactureEmail = req.getParameter("manufactureEmail");
-        String manufacturePhone = req.getParameter("manufacturePhone");
+        int categoryId = Integer.parseInt(req.getParameter("categoryId"));
         String description = req.getParameter("description");
         String detail = req.getParameter("detail");
-        Product product = new Product(id, name, description, detail, price, thumbnail, manufactureEmail, manufacturePhone);
+        Product product = new Product(id, categoryId, name, description, detail, thumbnail, price);
 
     }
 }
